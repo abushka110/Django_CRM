@@ -15,7 +15,7 @@ On Windows:
 venv\Scripts\activate
 ```
 
-## install requirement project's packages
+## install required project's packages
 
 ```commandline
 pip install -r requirements.txt
