@@ -2,6 +2,41 @@
 
 {% block content %}
 
-<h1>Hello world!</h1>
+<div class="col-md-6 offset-md-3">
+
+    {% if user.is_authenticated %}
+
+    <h1>Hello User</h1>
+    
+    {% else %}
+
+    <h1>Login</h1>
+    <br>
+    <!-- handmade form -->
+    <form method="POST" action="{% url 'home' %}">
+        <!-- token helps your form get hijacked by hackers -->
+        {% csrf_token %}
+
+        <form>
+        <div class="mb-3">
+            <!-- <label for="exampleInputEmail1" class="form-label" name=""first_name>username</label> -->
+            <input type="text" class="form-control", name="username", placeholder="Username" required>
+        </div>
+        <div class="mb-3">
+            <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
+            <input type="password" class="form-control" name="password", placeholder="Password" required>
+        </div>
+        <br>
+        <!-- TODO: stay logged in feature -->
+        <!-- <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+        <button type="submit" class="btn btn-secondary">Login</button>
+        </form>
+    </form>
+</div>
+
+{% endif %}
 
 {% endblock %}
