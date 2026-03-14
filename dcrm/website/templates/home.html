@@ -14,10 +14,9 @@
     <br>
     <!-- handmade form -->
     <form method="POST" action="{% url 'home' %}">
-        <!-- token helps your form get hijacked by hackers -->
+        <!-- token helps your form to not to get hijacked by hackers -->
         {% csrf_token %}
 
-        <form>
         <div class="mb-3">
             <!-- <label for="exampleInputEmail1" class="form-label" name=""first_name>username</label> -->
             <input type="text" class="form-control", name="username", placeholder="Username" required>
@@ -33,7 +32,6 @@
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div> -->
         <button type="submit" class="btn btn-secondary">Login</button>
-        </form>
     </form>
 </div>
 
