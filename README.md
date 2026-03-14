@@ -25,9 +25,9 @@ pip install -r requirements.txt
 
 Go to the folder with manage.py file, run library
 ```commandline
-python manage.py migrate 
+python dcrm/manage.py migrate 
 ```
 
 ```commandline
-python manage.py runserver
+python dcrm/manage.py runserver
 ```
