@@ -24,25 +24,28 @@ This project follows a typical Full‑Stack Django pattern where models are defi
 - **PostgreSQL** (or SQLite for development)
 - Django built‑in authentication
 
+Here’s a clean Markdown version ready to copy into your README.md with proper code blocks, lists, and headings:
+
 ## 📁 Project Structure
 
-dcrm/             # Django project config
+dcrm/             # Django project configuration
 website/          # Main app for CRM functionality
-models.py         # Record model defined here
-views.py          # View logic (list, add, update, delete)
-urls.py           # URL routes
-templates/        # HTML templates
-static/           # CSS and JS assets
+models.py       # Record model defined here
+views.py        # View logic (list, add, update, delete)
+urls.py         # URL routes
+templates/      # HTML templates
+static/         # CSS and JS assets
 manage.py         # Django CLI entrypoint
 
 ## 🚀 Getting Started
 
 ### 1. Clone the repository
 
+```bash
 git clone https://github.com/abushka110/Django_CRM.git
 cd Django_CRM
 
-### 2. Create and activate a virtual environment
+2. Create and activate a virtual environment
 
 On macOS / Linux:
 
@@ -54,21 +57,21 @@ On Windows:
 python -m venv venv
 venv\Scripts\activate
 
-### 3. Install dependencies
+3. Install dependencies
 
 pip install -r requirements.txt
 
-### 4. Apply database migrations
+4. Apply database migrations
 
 python dcrm/manage.py migrate
 
-### 5. (Optional) Create a superuser
+5. (Optional) Create a superuser
 
 python dcrm/manage.py createsuperuser
 
-This lets you access the Django admin if needed.
+This allows you to access the Django admin if needed.
 
-### 6. Run the development server
+6. Run the development server
 
 python dcrm/manage.py runserver
 
