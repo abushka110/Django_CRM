@@ -85,9 +85,10 @@ class AddRecordForm(forms.ModelForm):
         widget=forms.TextInput(attrs={"placeholder": _('City'), "class":"form-control"}),
         label=""
     )
-    state = forms.CharField(
+    state = forms.ChoiceField(
         required=True,
-        widget=forms.TextInput(attrs={"placeholder": _('State'), "class":"form-control"}),
+        choices=Record.STATE_CHOICES,  # <-- use the choices from your model
+        widget=forms.Select(attrs={"class":"form-control"}),
         label=""
     )
     zipcode = forms.CharField(

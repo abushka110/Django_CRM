@@ -76,7 +76,7 @@ This allows you to access the Django admin if needed.
 Since .mo files are ignored by Git, you need to compile translations from the .po files:
 Compile all .po files to .mo
 ```commandline
-python manage.py compilemessages
+python dcrm/manage.py compilemessages
 ```
 
 > Make sure you have **gettext** installed on your system; Django needs it to compile `.po` → `.mo`.

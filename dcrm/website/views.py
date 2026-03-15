@@ -6,6 +6,9 @@ from django.utils.translation import gettext as _
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
 
+# Map state codes to full names
+STATE_DICT = dict(Record.STATE_CHOICES)
+
 def home(request):
     records = Record.objects.all()
 
@@ -100,6 +103,12 @@ def dashboard(request):
             .order_by('-total')
         )
 
+        # convert codes to full names
+        customers_by_state_full = [{'state': STATE_DICT.get(s['state'], s['state']), 'total': s['total']} for s in customers_by_state]
+
+        # limit to top 3
+        customers_by_state_top3 = customers_by_state_full[:3]
+
         emails = Record.objects.values_list('email', flat=True)
         domains = [email.split('@')[1] for email in emails if email and '@' in email]
 
@@ -110,7 +119,7 @@ def dashboard(request):
 
         context = {
             "total_customers": total_customers,
-            "customers_by_state": customers_by_state,
+            "customers_by_state": customers_by_state_top3,  # only top 3
             "domain_counts": domain_counts[:5]
         }
         return render(request, "dashboard.html", context)
@@ -125,7 +134,13 @@ def full_state_stats(request):
             .annotate(total=Count('state'))
             .order_by('-total')
         )
-        return render(request, "full_state_stats.html", {"customers_by_state": customers_by_state})
+
+        customers_by_state_full = [
+            {'state': STATE_DICT.get(s['state'], s['state']), 'total': s['total']}
+            for s in customers_by_state
+        ]
+
+        return render(request, "full_state_stats.html", {"customers_by_state": customers_by_state_full})
     else:
-        messages.success(request, "You must be logged in!")
+        messages.error(request, _("You must be logged in!"))
         return redirect('home')
