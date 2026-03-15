@@ -47,38 +47,38 @@ cd Django_CRM
 ### 2. Create and activate a virtual environment
 
 On macOS / Linux:
-
+```commandline
 python3 -m venv venv
 source venv/bin/activate
-
+```
 On Windows:
-
+```commandline
 python -m venv venv
 venv\Scripts\activate
-
+```
 ### 3. Install dependencies
-
+```commandline
 pip install -r requirements.txt
-
+```
 ### 4. Apply database migrations
-
+```commandline
 python dcrm/manage.py migrate
-
+```
 ### 5. (Optional) Create a superuser
-
+```commandline
 python dcrm/manage.py createsuperuser
-
+```
 This allows you to access the Django admin if needed.
 
 ### 6. Run the development server
-
+```commandline
 python dcrm/manage.py runserver
-
+```
 Open your browser to:
 
 http://localhost:8000/
 
-📌 Usage
+## 📌 Usage
 	1.	Register a new user account
 	2.	Log in with your credentials
 	3.	View the list of customer records
