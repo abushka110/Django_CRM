@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.db.models import Count
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
 
@@ -94,3 +95,39 @@ def update_record(request, pk):
     else:
         messages.success(request, "You must be logged in!")
         return redirect('home')
+
+
+def dashboard(request):
+
+    # total customers
+    total_customers = Record.objects.count()
+
+    # customers by state
+    customers_by_state = (
+        Record.objects.values('state')
+        .annotate(total=Count('state'))
+        .order_by('-total')
+    )
+
+    # email domains
+    emails = Record.objects.values_list('email', flat=True)
+
+    domains = []
+    for email in emails:
+        if email and '@' in email:
+            domains.append(email.split('@')[1])
+
+    domain_counts = {}
+    for d in domains:
+        domain_counts[d] = domain_counts.get(d, 0) + 1
+
+    # convert to sorted list
+    domain_counts = sorted(domain_counts.items(), key=lambda x: x[1], reverse=True)
+
+    context = {
+        "total_customers": total_customers,
+        "customers_by_state": customers_by_state,
+        "domain_counts": domain_counts[:5]
+    }
+
+    return render(request, "dashboard.html", context)
