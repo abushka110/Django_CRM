@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-15 17:36+0000\n"
+"POT-Creation-Date: 2026-03-15 19:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,25 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: website/forms.py:10
+#: dcrm/website/forms.py:10
 #, fuzzy
 #| msgid "Address"
 msgid "Email Address"
 msgstr "Adresse"
 
-#: website/forms.py:15 website/forms.py:60
+#: dcrm/website/forms.py:15 dcrm/website/forms.py:60
 msgid "First Name"
 msgstr "Vorname"
 
-#: website/forms.py:20 website/forms.py:65
+#: dcrm/website/forms.py:20 dcrm/website/forms.py:65
 msgid "Last Name"
 msgstr "Nachname"
 
-#: website/forms.py:31
+#: dcrm/website/forms.py:31
 msgid "User Name"
 msgstr "Benutzername"
 
-#: website/forms.py:34
+#: dcrm/website/forms.py:34
 msgid ""
 "<span class=\"form-text text-muted\"><small>Required. 150 characters or "
 "fewer. Letters, digits and @/./+/-/_ only.</small></span>"
@@ -44,11 +44,11 @@ msgstr ""
 "<span class=\"form-text text-muted\"><small>Erforderlich. Maximal 150 "
 "Zeichen. Buchstaben, Ziffern und @/./+/-/_ erlaubt.</small></span>"
 
-#: website/forms.py:38
+#: dcrm/website/forms.py:38
 msgid "Password"
 msgstr "Passwort"
 
-#: website/forms.py:41
+#: dcrm/website/forms.py:41
 msgid ""
 "<ul class=\"form-text text-muted small\"><li>Your password can't be too "
 "similar to your other personal information.</li><li>Your password must "
@@ -60,11 +60,11 @@ msgstr ""
 "enthalten.</li><li>Es darf kein häufig verwendetes Passwort sein.</li><li>Es "
 "darf nicht ausschließlich aus Zahlen bestehen.</li></ul>"
 
-#: website/forms.py:50
+#: dcrm/website/forms.py:50
 msgid "Confirm Password"
 msgstr "Passwort bestätigen"
 
-#: website/forms.py:53
+#: dcrm/website/forms.py:53
 msgid ""
 "<span class=\"form-text text-muted\"><small>Enter the same password as "
 "before, for verification.</small></span>"
@@ -72,125 +72,153 @@ msgstr ""
 "<span class=\"form-text text-muted\"><small>Geben Sie dasselbe Passwort "
 "erneut zur Bestätigung ein.</small></span>"
 
-#: website/forms.py:70 website/templates/home.html:18
+#: dcrm/website/forms.py:70 dcrm/website/templates/home.html:18
 msgid "Email"
 msgstr "E-Mail"
 
-#: website/forms.py:75 website/templates/home.html:19
+#: dcrm/website/forms.py:75 dcrm/website/templates/home.html:19
 msgid "Phone"
 msgstr "Telefon"
 
-#: website/forms.py:80 website/templates/home.html:20
+#: dcrm/website/forms.py:80 dcrm/website/templates/home.html:20
 msgid "Address"
 msgstr "Adresse"
 
-#: website/forms.py:85 website/templates/home.html:21
+#: dcrm/website/forms.py:85 dcrm/website/templates/home.html:21
 msgid "City"
 msgstr "Stadt"
 
-#: website/forms.py:90 website/templates/home.html:22
-msgid "State"
-msgstr "Bundesland"
-
-#: website/forms.py:95 website/templates/home.html:23
+#: dcrm/website/forms.py:96 dcrm/website/templates/home.html:23
 msgid "Zipcode"
 msgstr "PLZ"
 
-#: website/templates/add_record.html:7 website/templates/home.html:10
+#: dcrm/website/templates/add_record.html:7 dcrm/website/templates/home.html:10
 msgid "Add Record"
 msgstr "Datensatz hinzufügen"
 
-#: website/templates/add_record.html:16
+#: dcrm/website/templates/add_record.html:16
 msgid "Back"
 msgstr "Zurück"
 
-#: website/templates/add_record.html:19
+#: dcrm/website/templates/add_record.html:19
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: website/templates/dashboard.html:7 website/templates/navbar.html:27
+#: dcrm/website/templates/dashboard.html:7
+#: dcrm/website/templates/navbar.html:27
 msgid "Dashboard"
 msgstr "Übersicht"
 
-#: website/templates/dashboard.html:16
+#: dcrm/website/templates/dashboard.html:16
 msgid "Total Customers"
 msgstr "Gesamtanzahl Kunden"
 
-#: website/templates/dashboard.html:28
-#: website/templates/full_state_stats.html:6
+#: dcrm/website/templates/dashboard.html:28
+#: dcrm/website/templates/full_state_stats.html:6
 msgid "Customers by State"
 msgstr "Kunden nach Bundesland"
 
-#: website/templates/dashboard.html:42
+#: dcrm/website/templates/dashboard.html:42
+#: dcrm/website/templates/dashboard.html:67
+#: dcrm/website/templates/dashboard.html:87
+#: dcrm/website/templates/dashboard.html:105
+#: dcrm/website/templates/dashboard.html:123
 msgid "see more..."
 msgstr "mehr..."
 
-#: website/templates/dashboard.html:54
+#: dcrm/website/templates/dashboard.html:54
 msgid "Top Email Domains"
 msgstr "Beliebteste E-Mail-Domains"
 
-#: website/templates/home.html:9
+#: dcrm/website/templates/dashboard.html:78
+#: dcrm/website/templates/full_first_name_stats.html:6
+msgid "Customers by First Name"
+msgstr "Kunden nach Vorname"
+
+#: dcrm/website/templates/dashboard.html:96
+#: dcrm/website/templates/full_last_name_stats.html:6
+msgid "Customers by Last Name"
+msgstr "Kunden nach Nachname"
+
+#: dcrm/website/templates/dashboard.html:114
+#: dcrm/website/templates/full_city_stats.html:6
+msgid "Customers by City"
+msgstr "Kunden nach Stadt"
+
+#: dcrm/website/templates/full_email_stats.html:6
+#, fuzzy
+#| msgid "Top Email Domains"
+msgid "Customers by Email Domain"
+msgstr "Beliebteste E-Mail-Domains"
+
+#: dcrm/website/templates/home.html:9
 msgid "Records"
 msgstr "Datensätze"
 
-#: website/templates/home.html:17
+#: dcrm/website/templates/home.html:17
 msgid "Name"
 msgstr "Name"
 
-#: website/templates/home.html:24
+#: dcrm/website/templates/home.html:22
+msgid "State"
+msgstr "Bundesland"
+
+#: dcrm/website/templates/home.html:24
 msgid "Created At"
 msgstr "Erstellt am"
 
-#: website/templates/home.html:25
+#: dcrm/website/templates/home.html:25
 msgid "ID"
 msgstr "ID"
 
-#: website/templates/home.html:53 website/templates/home.html:75
-#: website/templates/navbar.html:64
+#: dcrm/website/templates/home.html:53 dcrm/website/templates/home.html:75
+#: dcrm/website/templates/navbar.html:64
 msgid "Login"
 msgstr "Anmelden"
 
-#: website/templates/navbar.html:21
+#: dcrm/website/templates/navbar.html:21
 msgid "Customers"
 msgstr "Kunden"
 
-#: website/templates/navbar.html:58
+#: dcrm/website/templates/navbar.html:58
 msgid "Logout"
 msgstr "Abmelden"
 
-#: website/templates/navbar.html:70
+#: dcrm/website/templates/navbar.html:70
 msgid "Register"
 msgstr "Registrieren"
 
-#: website/views.py:19
+#: dcrm/website/views.py:22
 msgid "Successfully logged in!"
 msgstr "Erfolgreich eingeloggt!"
 
-#: website/views.py:22
+#: dcrm/website/views.py:25
 msgid "Username or Password is incorrect! Please try again."
 msgstr "Benutzername oder Passwort ist falsch! Bitte erneut versuchen."
 
-#: website/views.py:29
+#: dcrm/website/views.py:32
 msgid "You have been successfully logged out!"
 msgstr "Sie wurden erfolgreich abgemeldet!"
 
-#: website/views.py:41
+#: dcrm/website/views.py:44
 msgid "You have successfully registered!"
 msgstr "Sie haben sich erfolgreich registriert!"
 
-#: website/views.py:53
+#: dcrm/website/views.py:56
 msgid "Record Added successfully!"
 msgstr "Datensatz erfolgreich hinzugefügt!"
 
-#: website/views.py:57 website/views.py:65 website/views.py:75
-#: website/views.py:91 website/views.py:118
+#: dcrm/website/views.py:60 dcrm/website/views.py:68 dcrm/website/views.py:78
+#: dcrm/website/views.py:94 dcrm/website/views.py:149 dcrm/website/views.py:168
+#: dcrm/website/views.py:192 dcrm/website/views.py:201
+#: dcrm/website/views.py:210 dcrm/website/views.py:219
 msgid "You must be logged in!"
 msgstr "Sie müssen eingeloggt sein!"
 
-#: website/views.py:72
+#: dcrm/website/views.py:75
 msgid "Record has been deleted!"
 msgstr "Datensatz wurde gelöscht!"
 
-#: website/views.py:84
+#: dcrm/website/views.py:87
 msgid "Record has been Updated successfully!"
 msgstr "Datensatz erfolgreich aktualisiert!"

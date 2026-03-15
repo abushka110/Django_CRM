@@ -73,6 +73,10 @@ python dcrm/manage.py createsuperuser
 This allows you to access the Django admin if needed.
 
 ### 6. Regenerate translation files
+Extract messages
+```commandline
+python dcrm/manage.py makemessages -l de
+```
 Since .mo files are ignored by Git, you need to compile translations from the .po files:
 Compile all .po files to .mo
 ```commandline
