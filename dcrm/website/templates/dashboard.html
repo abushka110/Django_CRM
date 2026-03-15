@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <!-- CUSTOMERS BY STATE -->
+        <!-- CUSTOMERS BY STATE (TOP 3) -->
         <div class="col-md-4">
             <div class="card shadow">
                 <div class="card-body">
@@ -29,14 +29,19 @@
                     </h5>
                     <ul class="list-group list-group-flush">
 
-                        {% for state in customers_by_state %}
-
+                        {% for state in customers_by_state|slice:":3" %}
                         <li class="list-group-item d-flex justify-content-between">
                             <span>{{ state.state }}</span>
                             <span>{{ state.total }}</span>
                         </li>
                         {% endfor %}
                     </ul>
+
+                    <!-- Button to full stats page -->
+                    <a href="{% url 'full_state_stats' %}" class="btn btn-sm">
+                        {% trans "see more..." %}
+                    </a>
+
                 </div>
             </div>
         </div>

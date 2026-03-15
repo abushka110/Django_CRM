@@ -82,7 +82,7 @@ def update_record(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, _("Record has been Updated successfully!"))
-            return redirect('view_record', pk=current_record.id)
+            return redirect('record', pk=current_record.id)
         return render(request, 'update_record.html', {
             'form': form,
             'current_record': current_record
@@ -116,4 +116,16 @@ def dashboard(request):
         return render(request, "dashboard.html", context)
     else:
         messages.error(request, _("You must be logged in!"))
+        return redirect('home')
+    
+def full_state_stats(request):
+    if request.user.is_authenticated:
+        customers_by_state = (
+            Record.objects.values('state')
+            .annotate(total=Count('state'))
+            .order_by('-total')
+        )
+        return render(request, "full_state_stats.html", {"customers_by_state": customers_by_state})
+    else:
+        messages.success(request, "You must be logged in!")
         return redirect('home')

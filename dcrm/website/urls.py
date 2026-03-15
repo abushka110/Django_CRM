@@ -28,4 +28,5 @@ urlpatterns = [
     path('delete_record/<int:pk>', views.delete_record, name = 'delete_record'),
     path('update_record/<int:pk>', views.update_record, name = 'update_record'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('full-state-stats/', views.full_state_stats, name='full_state_stats'),
 ]
