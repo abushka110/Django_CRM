@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-15 17:54+0100\n"
+"POT-Creation-Date: 2026-03-15 17:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,10 +117,15 @@ msgid "Total Customers"
 msgstr "Gesamtanzahl Kunden"
 
 #: website/templates/dashboard.html:28
+#: website/templates/full_state_stats.html:6
 msgid "Customers by State"
 msgstr "Kunden nach Bundesland"
 
-#: website/templates/dashboard.html:49
+#: website/templates/dashboard.html:42
+msgid "see more..."
+msgstr "mehr..."
+
+#: website/templates/dashboard.html:54
 msgid "Top Email Domains"
 msgstr "Beliebteste E-Mail-Domains"
 
