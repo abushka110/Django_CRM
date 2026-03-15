@@ -6,16 +6,19 @@ from django.utils.translation import gettext as _
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
 
-# Map state codes to full names
+# Map state codes (stored in the database) to full state names for display purposes
 STATE_DICT = dict(Record.STATE_CHOICES)
 
+# Home view: shows all records and handles login form submission
 def home(request):
     records = Record.objects.all()
 
     if request.method == "POST":
+        # Handle login
         username = request.POST['username']
         password = request.POST['password']
-        # Authenticate
+
+        # Authenticate user
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -25,17 +28,21 @@ def home(request):
             messages.error(request, _("Username or Password is incorrect! Please try again."))
             return redirect('home')
     else:
+        # Render homepage with list of records
         return render(request, 'home.html', {'records': records})
 
+# Logout view: logs out the user and redirects to home
 def logout_user(request):
     logout(request)
     messages.success(request, _("You have been successfully logged out!"))
     return redirect('home')
 
+# Registration view: handles user signup
 def register_user(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            # Save user and log them in automatically
             form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
@@ -44,9 +51,11 @@ def register_user(request):
             messages.success(request, _("You have successfully registered!"))
             return redirect('home')
     else:
+        # Display empty registration form
         form = SignUpForm()
     return render(request, 'register.html', {'form': form})
 
+# Add a new customer record
 def add_record(request):
     form = AddRecordForm(request.POST or None)
     if request.user.is_authenticated:
@@ -60,6 +69,7 @@ def add_record(request):
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
 
+# View details of a specific customer record by primary key (id)
 def customer_record(request, pk):
     if request.user.is_authenticated:
         customer_record = Record.objects.get(id=pk)
@@ -68,6 +78,7 @@ def customer_record(request, pk):
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
 
+# Delete a customer record
 def delete_record(request, pk):
     if request.user.is_authenticated:
         delete_record = Record.objects.get(id=pk)
@@ -78,6 +89,7 @@ def delete_record(request, pk):
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
 
+# Update an existing customer record
 def update_record(request, pk):
     if request.user.is_authenticated:
         current_record = Record.objects.get(id=pk)
@@ -94,11 +106,12 @@ def update_record(request, pk):
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
 
+# Dashboard view: shows overview statistics
 def dashboard(request):
     if request.user.is_authenticated:
         total_customers = Record.objects.count()
 
-        # Customers by state
+        # Customers grouped by state (top 3 only)
         customers_by_state = (
             Record.objects.values('state')
             .annotate(total=Count('state'))
@@ -107,7 +120,7 @@ def dashboard(request):
         customers_by_state_full = [{'state': STATE_DICT.get(s['state'], s['state']), 'total': s['total']} for s in customers_by_state]
         customers_by_state_top3 = customers_by_state_full[:3]
 
-        # Emails
+        # Top email domains
         emails = Record.objects.values_list('email', flat=True)
         domains = [email.split('@')[1] for email in emails if email and '@' in email]
         domain_counts = {}
@@ -115,21 +128,21 @@ def dashboard(request):
             domain_counts[d] = domain_counts.get(d, 0) + 1
         domain_counts_top5 = sorted(domain_counts.items(), key=lambda x: x[1], reverse=True)[:5]
 
-        # Customers by first name
+        # Top first names
         first_name_counts = (
             Record.objects.values('first_name')
             .annotate(total=Count('first_name'))
             .order_by('-total')
         )[:5]
 
-        # Customers by last name
+        # Top last names
         last_name_counts = (
             Record.objects.values('last_name')
             .annotate(total=Count('last_name'))
             .order_by('-total')
         )[:5]
 
-        # Customers by city
+        # Top cities
         city_counts = (
             Record.objects.values('city')
             .annotate(total=Count('city'))
@@ -149,7 +162,7 @@ def dashboard(request):
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
 
-# Full stats views
+# Full state statistics view
 def full_state_stats(request):
     if request.user.is_authenticated:
         customers_by_state = (
@@ -157,42 +170,35 @@ def full_state_stats(request):
             .annotate(total=Count('state'))
             .order_by('-total')
         )
-
         customers_by_state_full = [
             {'state': STATE_DICT.get(s['state'], s['state']), 'total': s['total']}
             for s in customers_by_state
         ]
-
         return render(request, "full_state_stats.html", {"customers_by_state": customers_by_state_full})
     else:
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
 
+# Full email domain statistics
 def full_email_stats(request):
     if request.user.is_authenticated:
-        # Get all emails
         emails = Record.objects.values_list('email', flat=True)
-        # Extract domains
         domains = [email.split('@')[1] for email in emails if email and '@' in email]
-
-        # Count occurrences of each domain
         domain_counts = {}
         for d in domains:
             domain_counts[d] = domain_counts.get(d, 0) + 1
 
-        # Convert to a sorted list of dicts
         domain_counts_full = sorted(
             [{'domain': domain, 'total': count} for domain, count in domain_counts.items()],
             key=lambda x: x['total'],
             reverse=True
         )
-
         return render(request, "full_email_stats.html", {"domain_counts": domain_counts_full})
     else:
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
-    
-# Full stats views
+
+# Full first name statistics
 def full_first_name_stats(request):
     if request.user.is_authenticated:
         stats = Record.objects.values('first_name').annotate(total=Count('first_name')).order_by('-total')
@@ -201,7 +207,7 @@ def full_first_name_stats(request):
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
 
-
+# Full last name statistics
 def full_last_name_stats(request):
     if request.user.is_authenticated:
         stats = Record.objects.values('last_name').annotate(total=Count('last_name')).order_by('-total')
@@ -210,7 +216,7 @@ def full_last_name_stats(request):
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
 
-
+# Full city statistics
 def full_city_stats(request):
     if request.user.is_authenticated:
         stats = Record.objects.values('city').annotate(total=Count('city')).order_by('-total')
