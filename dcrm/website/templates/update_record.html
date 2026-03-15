@@ -12,7 +12,7 @@
         {{ form.as_p }}
 
         <br>
-        <a href="{% url 'home' %}" class="btn btn-dark">Back</a>
+        <a href="{% url 'record' current_record.id %}" class="btn btn-dark">Back</a>
         <button type="submit" class="btn btn-secondary">Update</button>
     </form>
 </div>

@@ -82,11 +82,15 @@ def delete_record(request, pk):
 def update_record(request, pk):
     if request.user.is_authenticated:
         current_record = Record.objects.get(id=pk)
-        form = AddRecordForm(request.POST or None, instance = current_record)
+        form = AddRecordForm(request.POST or None, instance=current_record)
         if form.is_valid():
             form.save()
             messages.success(request, "Record has been Updated successfully!")
-            return redirect('home')
-        return render(request, 'update_record.html', {'form':form})
+            return redirect('view_record', pk=current_record.id)
+        return render(request, 'update_record.html', {
+            'form': form,
+            'current_record': current_record
+        })
     else:
         messages.success(request, "You must be logged in!")
+        return redirect('home')
