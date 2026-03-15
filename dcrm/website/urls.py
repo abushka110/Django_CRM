@@ -30,4 +30,7 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('full-state-stats/', views.full_state_stats, name='full_state_stats'),
     path('full-email-stats/', views.full_email_stats, name='full_email_stats'),
+    path('full-first_name-stats/', views.full_first_name_stats, name='full_first_name_stats'),
+    path('full-last_name-stats/', views.full_last_name_stats, name='full_last_name_stats'),
+    path('full-city-stats/', views.full_city_stats, name='full_city_stats'),
 ]

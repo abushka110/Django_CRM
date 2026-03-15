@@ -71,6 +71,60 @@
             </div>
         </div>
 
+        <!-- CUSTOMERS BY FIRST NAME -->
+        <div class="col-md-4 mt-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans "Customers by First Name" %}</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for item in first_name_counts %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ item.first_name }}</span>
+                            <span>{{ item.total }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'full_first_name_stats' %}" class="btn btn-sm">{% trans "see more..." %}</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUSTOMERS BY LAST NAME -->
+        <div class="col-md-4 mt-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans "Customers by Last Name" %}</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for item in last_name_counts %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ item.last_name }}</span>
+                            <span>{{ item.total }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'full_last_name_stats' %}" class="btn btn-sm">{% trans "see more..." %}</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUSTOMERS BY CITY -->
+        <div class="col-md-4 mt-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans "Customers by City" %}</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for item in city_counts %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ item.city }}</span>
+                            <span>{{ item.total }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'full_city_stats' %}" class="btn btn-sm">{% trans "see more..." %}</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>

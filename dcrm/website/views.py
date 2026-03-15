@@ -97,36 +97,59 @@ def update_record(request, pk):
 def dashboard(request):
     if request.user.is_authenticated:
         total_customers = Record.objects.count()
+
+        # Customers by state
         customers_by_state = (
             Record.objects.values('state')
             .annotate(total=Count('state'))
             .order_by('-total')
         )
-
-        # convert codes to full names
         customers_by_state_full = [{'state': STATE_DICT.get(s['state'], s['state']), 'total': s['total']} for s in customers_by_state]
-
-        # limit to top 3
         customers_by_state_top3 = customers_by_state_full[:3]
 
+        # Emails
         emails = Record.objects.values_list('email', flat=True)
         domains = [email.split('@')[1] for email in emails if email and '@' in email]
-
         domain_counts = {}
         for d in domains:
             domain_counts[d] = domain_counts.get(d, 0) + 1
-        domain_counts = sorted(domain_counts.items(), key=lambda x: x[1], reverse=True)
+        domain_counts_top5 = sorted(domain_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+
+        # Customers by first name
+        first_name_counts = (
+            Record.objects.values('first_name')
+            .annotate(total=Count('first_name'))
+            .order_by('-total')
+        )[:5]
+
+        # Customers by last name
+        last_name_counts = (
+            Record.objects.values('last_name')
+            .annotate(total=Count('last_name'))
+            .order_by('-total')
+        )[:5]
+
+        # Customers by city
+        city_counts = (
+            Record.objects.values('city')
+            .annotate(total=Count('city'))
+            .order_by('-total')
+        )[:5]
 
         context = {
             "total_customers": total_customers,
-            "customers_by_state": customers_by_state_top3,  # only top 3
-            "domain_counts": domain_counts[:5]
+            "customers_by_state": customers_by_state_top3,
+            "domain_counts": domain_counts_top5,
+            "first_name_counts": first_name_counts,
+            "last_name_counts": last_name_counts,
+            "city_counts": city_counts
         }
         return render(request, "dashboard.html", context)
     else:
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
-    
+
+# Full stats views
 def full_state_stats(request):
     if request.user.is_authenticated:
         customers_by_state = (
@@ -165,6 +188,33 @@ def full_email_stats(request):
         )
 
         return render(request, "full_email_stats.html", {"domain_counts": domain_counts_full})
+    else:
+        messages.error(request, _("You must be logged in!"))
+        return redirect('home')
+    
+# Full stats views
+def full_first_name_stats(request):
+    if request.user.is_authenticated:
+        stats = Record.objects.values('first_name').annotate(total=Count('first_name')).order_by('-total')
+        return render(request, "full_first_name_stats.html", {"stats": stats})
+    else:
+        messages.error(request, _("You must be logged in!"))
+        return redirect('home')
+
+
+def full_last_name_stats(request):
+    if request.user.is_authenticated:
+        stats = Record.objects.values('last_name').annotate(total=Count('last_name')).order_by('-total')
+        return render(request, "full_last_name_stats.html", {"stats": stats})
+    else:
+        messages.error(request, _("You must be logged in!"))
+        return redirect('home')
+
+
+def full_city_stats(request):
+    if request.user.is_authenticated:
+        stats = Record.objects.values('city').annotate(total=Count('city')).order_by('-total')
+        return render(request, "full_city_stats.html", {"stats": stats})
     else:
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
