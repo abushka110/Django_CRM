@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{% trans "Customers by Last Name" %}</h1>
+    <ul class="list-group mt-3">
+        {% for item in stats %}
+        <li class="list-group-item d-flex justify-content-between">
+            <span>{{ item.last_name }}</span>
+            <span>{{ item.total }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
