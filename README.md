@@ -39,11 +39,10 @@ manage.py         # Django CLI entrypoint
 
 ### 1. Clone the repository
 
-```bash
 git clone https://github.com/abushka110/Django_CRM.git
 cd Django_CRM
 
-2. Create and activate a virtual environment
+### 2. Create and activate a virtual environment
 
 On macOS / Linux:
 
@@ -55,21 +54,21 @@ On Windows:
 python -m venv venv
 venv\Scripts\activate
 
-3. Install dependencies
+### 3. Install dependencies
 
 pip install -r requirements.txt
 
-4. Apply database migrations
+### 4. Apply database migrations
 
 python dcrm/manage.py migrate
 
-5. (Optional) Create a superuser
+### 5. (Optional) Create a superuser
 
 python dcrm/manage.py createsuperuser
 
 This lets you access the Django admin if needed.
 
-6. Run the development server
+### 6. Run the development server
 
 python dcrm/manage.py runserver
 
