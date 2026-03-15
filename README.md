@@ -72,7 +72,33 @@ python dcrm/manage.py createsuperuser
 ```
 This allows you to access the Django admin if needed.
 
-### 6. Run the development server
+### 6. Regenerate translation files
+Since .mo files are ignored by Git, you need to compile translations from the .po files:
+Compile all .po files to .mo
+```commandline
+python manage.py compilemessages
+```
+
+> Make sure you have **gettext** installed on your system; Django needs it to compile `.po` → `.mo`.
+
+### Install `gettext`:
+
+* **macOS:**
+
+```bash
+brew install gettext
+```
+
+* **Ubuntu/Linux:**
+
+```bash
+sudo apt install gettext
+```
+
+* **Windows:**
+  Install via **GnuWin32** or use **WSL**.
+
+### 7. Run the development server
 ```commandline
 python dcrm/manage.py runserver
 ```
