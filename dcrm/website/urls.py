@@ -29,4 +29,5 @@ urlpatterns = [
     path('update_record/<int:pk>', views.update_record, name = 'update_record'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('full-state-stats/', views.full_state_stats, name='full_state_stats'),
+    path('full-email-stats/', views.full_email_stats, name='full_email_stats'),
 ]

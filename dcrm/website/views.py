@@ -144,3 +144,27 @@ def full_state_stats(request):
     else:
         messages.error(request, _("You must be logged in!"))
         return redirect('home')
+
+def full_email_stats(request):
+    if request.user.is_authenticated:
+        # Get all emails
+        emails = Record.objects.values_list('email', flat=True)
+        # Extract domains
+        domains = [email.split('@')[1] for email in emails if email and '@' in email]
+
+        # Count occurrences of each domain
+        domain_counts = {}
+        for d in domains:
+            domain_counts[d] = domain_counts.get(d, 0) + 1
+
+        # Convert to a sorted list of dicts
+        domain_counts_full = sorted(
+            [{'domain': domain, 'total': count} for domain, count in domain_counts.items()],
+            key=lambda x: x['total'],
+            reverse=True
+        )
+
+        return render(request, "full_email_stats.html", {"domain_counts": domain_counts_full})
+    else:
+        messages.error(request, _("You must be logged in!"))
+        return redirect('home')
