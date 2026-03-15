@@ -9,43 +9,30 @@ This project allows users to **register, log in, and manage customer records** u
 ### Authentication
 
 - User registration
-
 - User login
-
 - User logout
-
 - Authentication-based access to CRM features
 
 ### Customer Record Management
 
 - View all customer records
-
 - Add new records
-
 - Update existing records
-
 - Delete records
-
 - Detailed view for each record
 
 ### Data Organization
 
 - Customer contact information
-
 - Address and state tracking
-
 - Record timestamps
-
 - Structured database models
 
 ### User Experience
 
 - Flash messages for user feedback
-
 - Form validation
-
 - Clean UI using Bootstrap
-
 - Navigation for quick access to CRM functions
 
 This project follows a typical Full‑Stack Django pattern where models are defined in Django, views handle request logic, and templates render user pages.
