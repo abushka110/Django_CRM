@@ -1,19 +1,23 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
 {% block content %}
 
 <div class="col-md-6 offset-md-3">
-    <h1>Add Record:</h1>
-
+    <h1>{% trans "Add Record" %}</h1>
     <br>
-    <!-- handmade form -->
+
     <form method="POST" action="{% url 'add_record' %}">
-        <!-- token helps your form to not to get hijacked by hackers -->
         {% csrf_token %}
         {{ form.as_p }}
 
         <br>
-        <a href="{% url 'home' %}" class="btn btn-dark">Back</a>
-        <button type="submit" class="btn btn-secondary">Add</button>
+        <a href="{% url 'home' %}" class="btn btn-dark">
+            {% trans "Back" %}
+        </a>
+        <button type="submit" class="btn btn-secondary">
+            {% trans "Add" %}
+        </button>
     </form>
 </div>
 

@@ -1,27 +1,31 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 
 {% if user.is_authenticated %}
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>Records</h1>
-    <a class="btn btn-primary" href="{% url 'add_record' %}">Add Record</a>
+    <h1>{% trans "Records" %}</h1>
+    <a class="btn btn-primary" href="{% url 'add_record' %}">{% trans "Add Record" %}</a>
 </div>
+
 <table class="table table-striped table-hover table-bordered">
+
     <thead class="table-dark">
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Address</th>
-            <th scope="col">City</th>
-            <th scope="col">State</th>
-            <th scope="col">Zipcode</th>
-            <th scope="col">Created At</th>
-            <th scope="col">ID</th>
+            <th scope="col">{% trans "Name" %}</th>
+            <th scope="col">{% trans "Email" %}</th>
+            <th scope="col">{% trans "Phone" %}</th>
+            <th scope="col">{% trans "Address" %}</th>
+            <th scope="col">{% trans "City" %}</th>
+            <th scope="col">{% trans "State" %}</th>
+            <th scope="col">{% trans "Zipcode" %}</th>
+            <th scope="col">{% trans "Created At" %}</th>
+            <th scope="col">{% trans "ID" %}</th>
         </tr>
     </thead>
+
     <tbody>
         {% if records %}
             {% for record in records %}
@@ -40,13 +44,15 @@
 
         {% endif %}
     </tbody>
+
 </table>
 
 {% else %}
 
 <div class="col-md-6 offset-md-3"></div>
-    <h1>Login</h1>
+    <h1>{% trans "Login" %}</h1>
     <br>
+
     <!-- handmade form -->
     <form method="POST" action="{% url 'home' %}">
         <!-- token helps your form to not to get hijacked by hackers -->
@@ -66,8 +72,9 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div> -->
-        <button type="submit" class="btn btn-secondary">Login</button>
+        <button type="submit" class="btn btn-secondary">{% trans "Login" %}</button>
     </form>
+
 </div>
 
 {% endif %}

@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 
 <div class="container mt-4">
-
-    <h1 class="mb-4">Dashboard</h1>
+    <h1 class="mb-4">{% trans "Dashboard" %}</h1>
 
     <div class="row">
-
+        
         <!-- TOTAL CUSTOMERS -->
         <div class="col-md-4">
             <div class="card text-center shadow">
                 <div class="card-body">
-                    <h5 class="card-title">Total Customers</h5>
+                    <h5 class="card-title">
+                        {% trans "Total Customers" %}
+                    </h5>
                     <h2>{{ total_customers }}</h2>
                 </div>
             </div>
@@ -22,18 +24,19 @@
         <div class="col-md-4">
             <div class="card shadow">
                 <div class="card-body">
-
-                    <h5 class="card-title">Customers by State</h5>
-
+                    <h5 class="card-title">
+                        {% trans "Customers by State" %}
+                    </h5>
                     <ul class="list-group list-group-flush">
+
                         {% for state in customers_by_state %}
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>{{ state.state }}</span>
-                                <span>{{ state.total }}</span>
-                            </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ state.state }}</span>
+                            <span>{{ state.total }}</span>
+                        </li>
                         {% endfor %}
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -42,18 +45,17 @@
         <div class="col-md-4">
             <div class="card shadow">
                 <div class="card-body">
-
-                    <h5 class="card-title">Top Email Domains</h5>
-
+                    <h5 class="card-title">
+                        {% trans "Top Email Domains" %}
+                    </h5>
                     <ul class="list-group list-group-flush">
                         {% for domain, count in domain_counts %}
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>{{ domain }}</span>
-                                <span>{{ count }}</span>
-                            </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ domain }}</span>
+                            <span>{{ count }}</span>
+                        </li>
                         {% endfor %}
                     </ul>
-
                 </div>
             </div>
         </div>
