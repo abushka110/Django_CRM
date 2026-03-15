@@ -45,8 +45,6 @@ This project follows a typical Full‑Stack Django pattern where models are defi
 - **PostgreSQL** (or SQLite for development)
 - Django built‑in authentication
 
-Here’s a clean Markdown version ready to copy into your README.md with proper code blocks, lists, and headings:
-
 ## 📁 Project Structure
 
 | File/Folder | Description |
