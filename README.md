@@ -28,22 +28,24 @@ Here’s a clean Markdown version ready to copy into your README.md with proper 
 
 ## 📁 Project Structure
 
-dcrm/             # Django project configuration
-website/          # Main app for CRM functionality
-models.py       # Record model defined here
-views.py        # View logic (list, add, update, delete)
-urls.py         # URL routes
-templates/      # HTML templates
-static/         # CSS and JS assets
-manage.py         # Django CLI entrypoint
+| File/Folder | Description |
+|------------|-------------|
+| `dcrm/`     | Django project configuration |
+| `website/`  | Main app for CRM functionality |
+| `models.py` | Record model defined here |
+| `views.py`  | View logic (list, add, update, delete) |
+| `urls.py`   | URL routes |
+| `templates/`| HTML templates |
+| `static/`   | CSS and JS assets |
+| `manage.py` | Django CLI entrypoint |
 
 ## 🚀 Getting Started
 
 ### 1. Clone the repository
-
+```commandline
 git clone https://github.com/abushka110/Django_CRM.git
 cd Django_CRM
-
+```
 ### 2. Create and activate a virtual environment
 
 On macOS / Linux:
@@ -74,7 +76,7 @@ This allows you to access the Django admin if needed.
 ```commandline
 python dcrm/manage.py runserver
 ```
-Open your browser to:
+Open your browser at:
 
 http://localhost:8000/
 
